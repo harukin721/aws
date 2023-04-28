@@ -34,6 +34,13 @@ $ aws sts get-caller-identity
 }
 ```
 
+Cloud9 のターミナルからファイルを開けるようにする
+
+```
+$ npm install -g c9
+$ c9 < ファイル名 >
+```
+
 ## Terraform
 
 Amazon Linux2 の Cloud9 は Terraform が入っているが、tfenv で管理するようにする

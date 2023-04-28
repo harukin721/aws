@@ -6,11 +6,16 @@ AWS環境を管理している
 .
 ├── .github
 │   └── workflows
-│       └── hello-world.yaml
+│       └── hello-world.yaml  # 初期テスト用
 ├── .gitignore
 ├── README.md
+├── docs
+│   └── setup.md
 └── terraform
-    └── .terraform-version
+    ├── .terraform-version
+    ├── provider.tf
+    └── s3.tf
+
 
 ```
 
