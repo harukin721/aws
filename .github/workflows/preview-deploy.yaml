@@ -1,0 +1,21 @@
+name: "preview & deploy"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - terraform/**
+      - .github/workflows/**
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  preview:
+    name: "Preview"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World"
