@@ -13,9 +13,25 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  TF_VERSION: 1.3.0
+
+defaults:
+  run:
+    shell: bash
+    working-directory: "terraform/"
+    
 jobs:
   preview:
     name: "Preview"
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello World"
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+      - name: Terraform Fmt
+        run: |
+          terraform fmt -check
