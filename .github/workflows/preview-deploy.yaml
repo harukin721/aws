@@ -43,3 +43,12 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init -no-color
+      - name: Terraform Validate
+        run: |
+          terraform validate -no-color
+      - name: Terraform plan
+        run: |
+          terraform plan \
+            -input=false \
+            -no-color \
+            -detailed-exitcode
