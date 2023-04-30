@@ -10,7 +10,7 @@ IAM > IDプロバイダ
 - プロバイダURL : https://token.actions.githubusercontent.com
 - 対象者(Audience) : sts.amazonaws.com
 
-## IAMロール
+## IAMロール(github-actions-role という名前にした)
 
 IAM > ロールを作成 > ウェブアイデンティティ
 
@@ -39,3 +39,8 @@ IAM > ロールを作成 > ウェブアイデンティティ
     ]
 }
 ```
+
+## terraform init に必要なクレデンシャルを準備
+
+- GitHubのシークレット(AWS_IAM_ROLE_ARN)に IAMロール(github-actions-role)のARNを追加
+- AWSのクレデンシャル. https://github.com/marketplace/actions/configure-aws-credentials-for-github-actions
