@@ -9,8 +9,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket  = "harukin721-aws-tfstate"
-    key     = "s3-terraform-tfstate"
+    bucket   = "harukin721-aws-tfstate"
+    key   = "s3-terraform-tfstate"
     region  = "ap-northeast-1"
     profile = "terraform"
   }
