@@ -61,7 +61,7 @@ jobs:
 
   aws-apply:
     name: "Terraform Apply"
-    # planが成功したら実行
+    # planが成功したら
     needs: aws-plan
     if: needs.aws-plan.outputs.TF_PLAN_EXITCODE == 2
     # GitHubのEnvironments(レビュー必須)
@@ -87,3 +87,9 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init -no-color
+　　　- name: Terraform Apply
+        run: |
+          terraform apply \
+            -input=false \
+            -no-color \
+            -auto-approve
