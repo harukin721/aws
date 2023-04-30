@@ -87,7 +87,7 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init -no-color
-　　　- name: Terraform Apply
+      - name: Terraform Apply
         run: |
           terraform apply \
             -input=false \
