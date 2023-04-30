@@ -6,16 +6,17 @@ AWS環境を管理している
 .
 ├── .github
 │   └── workflows
-│       └── hello-world.yaml  # 初期テスト用
+│       └── preview-deploy.yaml
 ├── .gitignore
 ├── README.md
 ├── docs
+│   ├── gha-aws-link.md
 │   └── setup.md
 └── terraform
     ├── .terraform-version
-    ├── provider.tf
+    ├── .terraform.lock.hcl
+    ├── ec2.tf
     └── s3.tf
-
 
 ```
 
