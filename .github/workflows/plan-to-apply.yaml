@@ -61,7 +61,7 @@ jobs:
 
   aws-apply:
     name: "Terraform Apply"
-    # planが成功したら
+    # planが成功したらapply
     needs: aws-plan
     if: needs.aws-plan.outputs.TF_PLAN_EXITCODE == 2
     # GitHubのEnvironments(レビュー必須)
