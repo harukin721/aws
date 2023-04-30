@@ -25,6 +25,8 @@ jobs:
   aws-plan:
     name: "Terraform Plan"
     runs-on: ubuntu-latest
+    outputs:
+      TF_PLAN_EXITCODE: ${{ steps.plan.outputs.exitcode }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -49,8 +51,39 @@ jobs:
         run: |
           terraform validate -no-color
       - name: Terraform Plan
+        id: plan
+        continue-on-error: true 
         run: |
           terraform plan \
             -input=false \
             -no-color \
             -detailed-exitcode
+
+  aws-apply:
+    name: "Terraform Apply"
+    # planが成功したら実行
+    needs: aws-plan
+    if: needs.aws-plan.outputs.TF_PLAN_EXITCODE == 2
+    # GitHubのEnvironments(レビュー必須)
+    environment: approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+      - name: Terraform Fmt
+        run: |
+          terraform fmt -check
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+          aws-region: ap-northeast-1
+      - name: Terraform Init
+        run: |
+          terraform init -no-color
