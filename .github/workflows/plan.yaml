@@ -1,4 +1,4 @@
-name: "preview & deploy"
+name: "Terraform Plan"
 
 on:
   push:
@@ -22,12 +22,14 @@ defaults:
     working-directory: "terraform/"
     
 jobs:
-  preview:
-    name: "Preview"
+  aws-plan:
+    name: "Terraform Plan"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -46,7 +48,7 @@ jobs:
       - name: Terraform Validate
         run: |
           terraform validate -no-color
-      - name: Terraform plan
+      - name: Terraform Plan
         run: |
           terraform plan \
             -input=false \
