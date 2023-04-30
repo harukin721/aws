@@ -6,11 +6,13 @@ AWS環境を管理している
 .
 ├── .github
 │   └── workflows
-│       └── preview-deploy.yaml
+│       └── plan-to-apply.yaml
 ├── .gitignore
 ├── README.md
 ├── docs
-│   ├── gha-aws-link.md
+│   ├── gha_aws_link.md
+│   ├── images
+│   │   └── github_actions_approve.png
 │   └── setup.md
 └── terraform
     ├── .terraform-version
@@ -22,4 +24,7 @@ AWS環境を管理している
 
 ## GitHub Actions で Terraform 実行
 
-自動で `terraform plan` して、承認後に `terraform apply` できるようにしたい。
+1. `git push` すると、`terraform plan` が実行される
+2. GitHub > Actions の Review deployments で approve すると`terraform apply` が実行される
+
+![github_actions_approve](/docs/images/github_actions_approve.png)
