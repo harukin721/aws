@@ -1,4 +1,4 @@
-name: "Terraform Plan"
+name: "Terraform Plan & Apply"
 
 on:
   push:
@@ -38,7 +38,7 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
       - name: Terraform Fmt
         run: |
-          terraform fmt -check
+          terraform fmt -recursive -check
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -78,7 +78,7 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
       - name: Terraform Fmt
         run: |
-          terraform fmt -check
+          terraform fmt -recursive -check
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
