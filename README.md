@@ -5,8 +5,9 @@ AWS環境を管理している
 ```
 .
 ├── .github
+│   ├── PULL_REQUEST_TEMPLATE.md
 │   └── workflows
-│       └── plan-to-apply.yaml
+│       └── terraform-plan-apply.yaml
 ├── .gitignore
 ├── README.md
 ├── docs
@@ -18,7 +19,7 @@ AWS環境を管理している
     ├── .terraform-version
     ├── .terraform.lock.hcl
     ├── ec2.tf
-    └── s3.tf
+    └── provider.tf
 
 ```
 
