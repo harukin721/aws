@@ -4,16 +4,16 @@ module "vpc" {
   name = "my-vpc"
   cidr = "10.0.0.0/16"
 
-  azs             = ["ap-northeast-1a", "ap-northeast-1c"]
+  azs = ["ap-northeast-1a", "ap-northeast-1c"]
   # 3subnets
-  public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
-  private_subnets = ["10.0.11.0/24", "10.0.12.0/24"]
-  database_subnets  = ["10.0.21.0/24", "10.0.22.0/24"]
+  public_subnets   = ["10.0.1.0/24", "10.0.2.0/24"]
+  private_subnets  = ["10.0.11.0/24", "10.0.12.0/24"]
+  database_subnets = ["10.0.21.0/24", "10.0.22.0/24"]
 
   enable_dns_hostnames = true
   enable_dns_support   = true
-  enable_nat_gateway = true
-  single_nat_gateway = true
+  enable_nat_gateway   = true
+  single_nat_gateway   = true
 
   public_subnet_tags = {
     "kubernetes.io/role/elb" = "1"
@@ -44,7 +44,7 @@ resource "aws_security_group" "allow_http" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   egress {
     from_port        = 0
     to_port          = 0
@@ -71,7 +71,7 @@ resource "aws_security_group" "internal" {
     protocol        = "tcp"
     security_groups = [aws_security_group.allow_http.id]
   }
-  
+
   ingress {
     description     = "Allow internal HTTPS access."
     from_port       = 443
