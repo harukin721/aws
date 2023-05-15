@@ -20,6 +20,7 @@ AWS環境を管理している
     ├── .terraform.lock.hcl
     ├── ec2.tf
     └── provider.tf
+    └── vpc.tf
 
 ```
 
